@@ -7,5 +7,7 @@ defmodule BikerampWeb.Router do
 
   scope "/api", BikerampWeb do
     pipe_through :api
+
+    post "/trips", TripController, :create
   end
 end
