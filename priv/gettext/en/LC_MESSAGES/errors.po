@@ -95,3 +95,8 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+## From Bikeramp.Tracking.Trip
+
+msgid "cannot be calculated"
+msgstr ""

@@ -4,7 +4,7 @@ defmodule BikerampWeb.TripControllerTest do
   alias Bikeramp.Tracking
   alias Bikeramp.Tracking.Trip
 
-  @create_attrs %{date: ~D[2010-04-17], destination_address: "some destination_address", distance: "120.5", price: "120.5", start_address: "some start_address"}
+  @create_attrs %{date: ~D[2010-04-17], destination_address: "some destination_address", price: "120.5", start_address: "some start_address"}
   @invalid_attrs %{date: nil, destination_address: nil, distance: nil, price: nil, start_address: nil}
 
   setup %{conn: conn} do
@@ -16,7 +16,7 @@ defmodule BikerampWeb.TripControllerTest do
       conn = post conn, trip_path(conn, :create), trip: @create_attrs
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      distance = Decimal.new("120.5")
+      distance = 2700
       price = Decimal.new("120.5")
 
       %Trip{
