@@ -4,7 +4,7 @@ defmodule Bikeramp.MapsStub do
   def distance("error", "error", _options) do
     {:error, "ERROR", "Some error message"}
   end
-  def distance("not_existing", "not_existing", _options) do
+  def distance("not_existing, not_existing, not_existing", "not_existing, not_existing, not_existing", _options) do
     result = %{
       "destination_addresses" => ["not_existing"],
       "origin_addresses" => ["not_existing"],

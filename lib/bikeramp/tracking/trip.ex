@@ -30,5 +30,7 @@ defmodule Bikeramp.Tracking.Trip do
     trip
     |> cast(attrs, [:start_address, :destination_address, :price, :date, :distance])
     |> validate_required([:start_address, :destination_address, :price, :date])
+    |> validate_format(:start_address, ~r/.+\,.+\,.+/)
+    |> validate_format(:destination_address, ~r/.+\,.+\,.+/)
   end
 end

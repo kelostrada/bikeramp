@@ -4,7 +4,7 @@ defmodule BikerampWeb.TripControllerTest do
   alias Bikeramp.Tracking
   alias Bikeramp.Tracking.Trip
 
-  @create_attrs %{date: ~D[2010-04-17], destination_address: "some destination_address", price: "120.5", start_address: "some start_address"}
+  @create_attrs %{date: ~D[2010-04-17], destination_address: "Plac Europejski 2, Warszawa, Polska", price: "120.5", start_address: "Wspólna 50, Warszawa, Polska"}
   @invalid_attrs %{date: nil, destination_address: nil, distance: nil, price: nil, start_address: nil}
 
   setup %{conn: conn} do
@@ -22,10 +22,10 @@ defmodule BikerampWeb.TripControllerTest do
       %Trip{
         id: ^id,
         date: ~D[2010-04-17],
-        destination_address: "some destination_address",
+        destination_address: "Plac Europejski 2, Warszawa, Polska",
         distance: ^distance,
         price: ^price,
-        start_address: "some start_address"
+        start_address: "Wspólna 50, Warszawa, Polska"
       } = Tracking.get_trip!(id)
     end
 
