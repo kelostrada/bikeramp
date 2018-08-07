@@ -1,11 +1,13 @@
 defmodule Bikeramp.Tracking.DistanceTest do
   use Bikeramp.DataCase
+  doctest Bikeramp.Tracking.Distance
+
   import ExUnit.CaptureLog
   alias Bikeramp.Tracking.Distance
 
   describe "get_distance/2" do
     test "gets stubbed distance" do
-      assert {:ok, 2709} == Distance.get_distance("test origin", "test destination")
+      assert {:ok, 2700} == Distance.get_distance("test origin", "test destination")
     end
 
     test "gets stubbed error" do

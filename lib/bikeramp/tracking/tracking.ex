@@ -17,6 +17,7 @@ defmodule Bikeramp.Tracking do
       [%Trip{}, ...]
 
   """
+  @spec list_trips() :: [Trip.t]
   def list_trips do
     Repo.all(Trip)
   end
@@ -35,6 +36,7 @@ defmodule Bikeramp.Tracking do
       ** (Ecto.NoResultsError)
 
   """
+  @spec get_trip!(integer) :: Trip.t
   def get_trip!(id), do: Repo.get!(Trip, id)
 
   @doc """
@@ -49,6 +51,7 @@ defmodule Bikeramp.Tracking do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec create_trip(map) :: {:ok, Trip.t} | {:error, Ecto.Changeset.t}
   def create_trip(attrs \\ %{}) do
     %Trip{}
     |> Trip.changeset(attrs)
@@ -67,6 +70,7 @@ defmodule Bikeramp.Tracking do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec update_trip(Trip.t, map) :: {:ok, Trip.t} | {:error, Ecto.Changeset.t}
   def update_trip(%Trip{} = trip, attrs) do
     trip
     |> Trip.changeset(attrs)
@@ -85,6 +89,7 @@ defmodule Bikeramp.Tracking do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec delete_trip(Trip.t) :: {:ok, Trip.t} | {:error, Ecto.Changeset.t}
   def delete_trip(%Trip{} = trip) do
     Repo.delete(trip)
   end
@@ -98,6 +103,7 @@ defmodule Bikeramp.Tracking do
       %Ecto.Changeset{source: %Trip{}}
 
   """
+  @spec change_trip(Trip.t) :: Ecto.Changeset.t
   def change_trip(%Trip{} = trip) do
     Trip.changeset(trip, %{})
   end

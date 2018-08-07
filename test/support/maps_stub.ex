@@ -28,7 +28,7 @@ defmodule Bikeramp.MapsStub do
             %{
               "distance" => %{
                 "text" => "2.7 km",
-                "value" => 2709
+                "value" => 2700
               },
               "duration" => %{
                 "text" => "8 mins",
