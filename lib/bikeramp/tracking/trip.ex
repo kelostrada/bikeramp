@@ -9,14 +9,14 @@ defmodule Bikeramp.Tracking.Trip do
     date: Date.t,
     start_address: String.t,
     destination_address: String.t,
-    distance: Decimal.t,
+    distance: integer,
     price: Decimal.t
   }
 
   schema "trips" do
     field :date, :date
     field :destination_address, :string
-    field :distance, :decimal
+    field :distance, :integer
     field :price, :decimal
     field :start_address, :string
 
@@ -29,6 +29,6 @@ defmodule Bikeramp.Tracking.Trip do
   def changeset(trip, attrs) do
     trip
     |> cast(attrs, [:start_address, :destination_address, :price, :date, :distance])
-    |> validate_required([:start_address, :destination_address, :price, :date, :distance])
+    |> validate_required([:start_address, :destination_address, :price, :date])
   end
 end

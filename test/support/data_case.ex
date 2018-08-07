@@ -22,6 +22,7 @@ defmodule Bikeramp.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Bikeramp.DataCase
+      import Bikeramp.Factory
     end
   end
 

@@ -4,9 +4,10 @@ defmodule Bikeramp.Tracking do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset, only: [get_change: 2, put_change: 3, add_error: 4]
   alias Bikeramp.Repo
 
-  alias Bikeramp.Tracking.Trip
+  alias Bikeramp.Tracking.{Distance, Trip}
 
   @doc """
   Returns the list of trips.
@@ -55,8 +56,20 @@ defmodule Bikeramp.Tracking do
   def create_trip(attrs \\ %{}) do
     %Trip{}
     |> Trip.changeset(attrs)
+    |> update_distance()
     |> Repo.insert()
   end
+
+  @spec update_distance(Ecto.Changeset.t) :: Ecto.Changeset.t
+  defp update_distance(%{valid?: true} = changeset) do
+    start_address = get_change(changeset, :start_address)
+    destination_address = get_change(changeset, :destination_address)
+    case Distance.get_distance(start_address, destination_address) do
+      {:ok, distance} -> put_change(changeset, :distance, distance)
+      {:error, error} -> add_error(changeset, :distance, "cannot be calculated", status: error)
+    end
+  end
+  defp update_distance(changeset), do: changeset
 
   @doc """
   Updates a trip.
