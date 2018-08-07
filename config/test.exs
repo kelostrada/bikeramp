@@ -17,3 +17,5 @@ config :bikeramp, Bikeramp.Repo,
   database: "bikeramp_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :bikeramp, :maps_service, Bikeramp.MapsStub
