@@ -17,7 +17,7 @@ defmodule Bikeramp.Tracking.DistanceTest do
     end
 
     test "gets NOT_FOUND error" do
-      assert {:error, "NOT_FOUND"} == Distance.get_distance("not_existing", "not_existing")
+      assert {:error, "NOT_FOUND"} == Distance.get_distance("not_existing, not_existing, not_existing", "not_existing, not_existing, not_existing")
     end
   end
 
