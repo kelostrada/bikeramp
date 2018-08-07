@@ -1,7 +1,17 @@
 defmodule Bikeramp.Tracking.Trip do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Bikeramp.Tracking.Trip
+
+  @type t :: %Trip{
+    date: Date.t,
+    start_address: String.t,
+    destination_address: String.t,
+    distance: Decimal.t,
+    price: Decimal.t
+  }
 
   schema "trips" do
     field :date, :date
@@ -13,7 +23,9 @@ defmodule Bikeramp.Tracking.Trip do
     timestamps()
   end
 
+
   @doc false
+  @spec changeset(Trip.t, map) :: Ecto.Changeset.t
   def changeset(trip, attrs) do
     trip
     |> cast(attrs, [:start_address, :destination_address, :price, :date, :distance])

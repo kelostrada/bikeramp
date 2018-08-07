@@ -1,4 +1,7 @@
 defmodule Bikeramp.Repo do
+  @moduledoc """
+  Bikeramp Repo.
+  """
   use Ecto.Repo, otp_app: :bikeramp
 
   @doc """
