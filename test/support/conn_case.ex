@@ -23,6 +23,7 @@ defmodule BikerampWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint BikerampWeb.Endpoint
+      import Bikeramp.Factory
     end
   end
 

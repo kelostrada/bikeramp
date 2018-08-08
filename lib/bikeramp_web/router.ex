@@ -9,5 +9,8 @@ defmodule BikerampWeb.Router do
     pipe_through :api
 
     post "/trips", TripController, :create
+
+    get "/stats/weekly", StatController, :weekly
+    get "/stats/monthly", StatController, :monthly
   end
 end
