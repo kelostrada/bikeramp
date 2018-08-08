@@ -39,7 +39,7 @@ defmodule Bikeramp.Stats.Query do
     where: t.date >= ^week_start,
     where: t.date < ^week_end,
     select: %{
-      total_distance: fragment("COALESCE(SUM(?), 0)", t.distance),
+      total_distance: type(fragment("COALESCE(SUM(?), 0)", t.distance), :integer),
       total_price: fragment("COALESCE(SUM(?), 0)", t.price),
     })
     |> Repo.one
