@@ -12,9 +12,4 @@ defmodule BikerampWeb.FallbackController do
     |> render(BikerampWeb.ChangesetView, "error.json", changeset: changeset)
   end
 
-  def call(conn, {:error, :not_found}) do
-    conn
-    |> put_status(:not_found)
-    |> render(BikerampWeb.ErrorView, :"404")
-  end
 end
