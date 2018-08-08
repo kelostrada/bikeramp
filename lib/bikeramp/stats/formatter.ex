@@ -50,29 +50,29 @@ defmodule Bikeramp.Stats.Formatter do
 
   ## Examples
 
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-07-31])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-07-31])
       "July, 31st"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-01])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-01])
       "August, 1st"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-02])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-02])
       "August, 2nd"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-03])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-03])
       "August, 3rd"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-08])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-08])
       "August, 8th"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-12])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-12])
       "August, 12th"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-21])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-21])
       "August, 21st"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-22])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-22])
       "August, 22nd"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-23])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-23])
       "August, 23rd"
-      iex> Bikeramp.Stats.Formatter.format_date!(~D[2018-08-24])
+      iex> Bikeramp.Stats.Formatter.format_day!(~D[2018-08-24])
       "August, 24th"
   """
-  @spec format_date!(Date.t) :: String.t | no_return
-  def format_date!(%Date{day: day} = date) do
+  @spec format_day!(Date.t) :: String.t | no_return
+  def format_day!(%Date{day: day} = date) do
     Timex.format!(date, "{Mfull}, {D}") <> day_suffix(day)
   end
 
@@ -85,6 +85,5 @@ defmodule Bikeramp.Stats.Formatter do
   defp day_suffix(23), do: "rd"
   defp day_suffix(day) when day >= 24 and day <= 30, do: "th"
   defp day_suffix(31), do: "st"
-
 
 end
