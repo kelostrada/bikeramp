@@ -31,6 +31,9 @@ config :bikeramp, Bikeramp.Repo,
   ssl: true,
   pool_size: 1 # Free tier db only allows 1 connection
 
+config :google_maps,
+  api_key: "${GOOGLE_API_KEY}"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
