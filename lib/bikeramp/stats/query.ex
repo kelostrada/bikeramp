@@ -14,6 +14,11 @@ defmodule Bikeramp.Stats.Query do
     avg_price: Decimal.t
   }
 
+  @type weekly_stat :: %{
+    total_distance: integer,
+    total_price: Decimal.t
+  }
+
   @doc """
   Returns weekly stats - total distance and total price.
   Requires Date parameter - usually used as todays date to indicate the week.
@@ -24,10 +29,7 @@ defmodule Bikeramp.Stats.Query do
       %{total_distance: 0, total_price: Decimal.new(0)}
 
   """
-  @spec weekly(Date.t) :: %{
-    total_distance: integer,
-    total_price: Decimal.t
-  }
+  @spec weekly(Date.t) :: weekly_stat
   def weekly(%Date{} = date) do
     day = Date.day_of_week(date) - 1 # substract one day because we start counting from 1 (monday)
     week_start = Date.add(date, -day)
