@@ -7,8 +7,16 @@ defmodule Bikeramp.Stats.Query do
   alias Bikeramp.Repo
   alias Bikeramp.Tracking.Trip
 
+  @type monthly_stat :: %{
+    day: Date.t,
+    total_distance: integer,
+    avg_ride: integer,
+    avg_price: Decimal.t
+  }
+
   @doc """
-  Returns weekly stats - total distance and total price
+  Returns weekly stats - total distance and total price.
+  Requires Date parameter - usually used as todays date to indicate the week.
 
   ## Examples
 
@@ -33,8 +41,36 @@ defmodule Bikeramp.Stats.Query do
       total_price: fragment("COALESCE(SUM(?), 0)", t.price),
     })
     |> Repo.one
+  end
 
+  @doc """
+  Returns monthly stats aggregated by day.
+  Requires Date parameter - usually used as todays date to indicate the month.
 
+  ## Examples
+
+      iex> Bikeramp.Stats.Query.monthly(Date.utc_today)
+      []
+
+      iex> import Bikeramp.Factory
+      iex> insert(:trip, price: 1, distance: 1, date: Date.utc_today)
+      iex> Bikeramp.Stats.Query.monthly(Date.utc_today)
+      [%{day: Date.utc_today, total_distance: 1, avg_ride: 1, avg_price: Decimal.new("1.00000000000000000000")}]
+
+  """
+  @spec monthly(Date.t) :: [monthly_stat]
+  def monthly(%Date{month: month}) do
+    (from t in Trip,
+    where: fragment("EXTRACT(MONTH FROM ?) = ?", t.date, ^month),
+    group_by: t.date,
+    order_by: [asc: t.date],
+    select: %{
+      day: t.date,
+      total_distance: sum(t.distance),
+      avg_ride: type(avg(t.distance), :integer),
+      avg_price: avg(t.price)
+    })
+    |> Repo.all
   end
 
 end
