@@ -13,7 +13,7 @@ defmodule BikerampWeb.TripControllerTest do
 
   describe "create trip" do
     test "renders trip when data is valid", %{conn: conn} do
-      conn = post conn, trip_path(conn, :create), trip: @create_attrs
+      conn = post conn, trip_path(conn, :create), @create_attrs
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
       distance = 2700
@@ -30,7 +30,7 @@ defmodule BikerampWeb.TripControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, trip_path(conn, :create), trip: @invalid_attrs
+      conn = post conn, trip_path(conn, :create), @invalid_attrs
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

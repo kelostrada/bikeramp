@@ -6,8 +6,8 @@ defmodule BikerampWeb.TripController do
 
   action_fallback BikerampWeb.FallbackController
 
-  def create(conn, %{"trip" => trip_params}) do
-    with {:ok, %Trip{} = trip} <- Tracking.create_trip(trip_params) do
+  def create(conn, params) do
+    with {:ok, %Trip{} = trip} <- Tracking.create_trip(params) do
       conn
       |> put_status(:created)
       |> render("show.json", trip: trip)
