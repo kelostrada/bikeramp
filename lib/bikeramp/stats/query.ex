@@ -68,7 +68,7 @@ defmodule Bikeramp.Stats.Query do
     order_by: [asc: t.date],
     select: %{
       day: t.date,
-      total_distance: sum(t.distance),
+      total_distance: type(sum(t.distance), :integer),
       avg_ride: type(avg(t.distance), :integer),
       avg_price: avg(t.price)
     })
