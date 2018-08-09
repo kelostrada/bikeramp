@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "This API is created for a bike couriers. It will help track rides during delivery of packages: how many kilometers one rides on each day and how much customers pay for delivery."
+  description: "This API is created for bike couriers. It's intention is to keep track of rides during delivery of packages: how many kilometers one rides on each day and how much customers pay for delivery."
   version: "1.0.0"
   title: "Bikeramp"
   contact:
