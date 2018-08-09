@@ -2,16 +2,18 @@ defmodule BikerampWeb.TripView do
   use BikerampWeb, :view
   alias BikerampWeb.TripView
 
+  import Bikeramp.Stats.Formatter
+
   def render("show.json", %{trip: trip}) do
-    %{data: render_one(trip, TripView, "trip.json")}
+    render_one(trip, TripView, "trip.json")
   end
 
   def render("trip.json", %{trip: trip}) do
     %{id: trip.id,
       start_address: trip.start_address,
       destination_address: trip.destination_address,
-      price: trip.price,
-      date: trip.date,
-      distance: trip.distance}
+      price: trip.price |> format_price("PLN"),
+      day: trip.date |> format_day!(),
+      distance: trip.distance |> format_distance()}
   end
 end

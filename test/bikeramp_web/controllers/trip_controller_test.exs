@@ -14,7 +14,7 @@ defmodule BikerampWeb.TripControllerTest do
   describe "create trip" do
     test "renders trip when data is valid", %{conn: conn} do
       conn = post conn, trip_path(conn, :create), @create_attrs
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      assert %{"id" => id} = json_response(conn, 201)
 
       distance = 2700
       price = Decimal.new("120.5")
