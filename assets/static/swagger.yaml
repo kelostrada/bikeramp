@@ -1,0 +1,123 @@
+swagger: "2.0"
+info:
+  description: "This API is created for a bike couriers. It will help track rides during delivery of packages: how many kilometers one rides on each day and how much customers pay for delivery."
+  version: "1.0.0"
+  title: "Bikeramp"
+  contact:
+    email: "kelostrada@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "surefooted-bruised-americanavocet.gigalixirapp.com"
+basePath: "/api"
+tags:
+- name: "Trips"
+  description: "Tracking trips info"
+- name: "Stats"
+  description: "Access to monthly and weekly statistics"
+schemes:
+- "https"
+paths:
+  /trips:
+    post:
+      tags:
+      - "Trips"
+      summary: "Track trip info"
+      description: "This endpoint logs the trip and automatically calculates the distance between start and destination addresses."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Trip parameters"
+        required: true
+        schema:
+          $ref: "#/definitions/Trip"
+      responses:
+        400:
+          description: "Bad Request"
+        422:
+          description: "Unprocessable entity"
+  /stats/weekly:
+    get:
+      tags:
+      - "Stats"
+      summary: "Gets weekly stats"
+      description: "This endpoint retrieves how many kilometers did courier rode during current week and how much money he received on the rides."
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/WeeklyStat"
+  /stats/monthly:
+    get:
+      tags:
+      - "Stats"
+      summary: "Gets monthly stats"
+      description: "This endpoint retrieves summary of ride distances from current month, grouped by day. The summary should include sum of all rides distances from given day, average ride distance and average price for the ride."
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MonthlyStat"
+definitions:
+  Trip:
+    type: "object"
+    required:
+    - "start_address"
+    - "destination_address"
+    - "price"
+    - "date"
+    properties:
+      start_address:
+        type: "string"
+        example: "Plac Europejski 2, Warszawa, Polska"
+      destination_address:
+        type: "string"
+        example: "Plac Europejski 2, Warszawa, Polska"
+      price:
+        type: "string"
+        example: "100.21"
+      date:
+        type: "string"
+        example: "2018-08-08"
+  WeeklyStat:
+    type: "object"
+    required:
+    - "total_distance"
+    - "total_price"
+    properties:
+      total_distance:
+        type: "string"
+        example: "40km"
+      total_price:
+        type: "string"
+        example: "49.75PLN"
+  MonthlyStat:
+    type: "object"
+    required:
+    - "day"
+    - "total_distance"
+    - "avg_ride"
+    - "avg_price"
+    properties:
+      day:
+        type: "string"
+        example: "July, 4th"
+      total_distance:
+        type: "string"
+        example: "12km"
+      avg_ride:
+        type: "string"
+        example: "4km"
+      avg_price:
+        type: "string"
+        example: "22.75PLN"

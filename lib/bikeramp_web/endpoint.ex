@@ -7,7 +7,7 @@ defmodule BikerampWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :bikeramp, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt index.html)
+    only: ~w(css fonts images js favicon.ico robots.txt index.html swagger.yaml)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
