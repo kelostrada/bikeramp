@@ -6,8 +6,9 @@ defmodule BikerampWeb.StatView do
 
   def render("weekly.json", %{stat: stat}) do
     %{
-      total_distance: stat.total_distance |> format_distance(),
-      total_price: stat.total_price |> format_price("PLN")
+      total_distance: stat.total_distance,
+      total_price: stat.total_price |> format_price("PLN"),
+      unit: stat.unit
     }
   end
 
@@ -18,9 +19,10 @@ defmodule BikerampWeb.StatView do
   def render("montly_stat.json", %{stat: stat}) do
     %{
       day: stat.day |> format_day!(),
-      total_distance: stat.total_distance |> format_distance(),
-      avg_ride: stat.avg_ride |> format_distance(),
-      avg_price: stat.avg_price |> format_price("PLN")
+      total_distance: stat.total_distance,
+      avg_ride: stat.avg_ride,
+      avg_price: stat.avg_price |> format_price("PLN"),
+      unit: stat.unit
     }
   end
 end
