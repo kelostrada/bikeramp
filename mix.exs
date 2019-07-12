@@ -41,7 +41,7 @@ defmodule Bikeramp.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:google_maps, "~> 0.10.0"},
+      {:google_maps, "~> 0.11.0"},
       {:timex, "~> 3.3"},
       {:distillery, "~> 1.0"},
       {:excoveralls, "~> 0.10.1", only: :test},
