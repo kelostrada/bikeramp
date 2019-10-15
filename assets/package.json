@@ -6,7 +6,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "swagger-ui": "^3.18.0"
+    "swagger-ui": "^3.23.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
