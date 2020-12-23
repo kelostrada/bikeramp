@@ -44,7 +44,7 @@ defmodule Bikeramp.Mixfile do
       {:google_maps, "~> 0.10.0"},
       {:timex, "~> 3.3"},
       {:distillery, "~> 1.0"},
-      {:excoveralls, "~> 0.10.1", only: :test},
+      {:excoveralls, "~> 0.13.4", only: :test},
       {:ex_machina, "~> 2.2", only: :test},
     ]
   end
